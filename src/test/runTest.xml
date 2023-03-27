@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Res">
+
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="API_Rest Assured">
+        <parameter name="browserType" value="chrome"/>
+        <classes>
+            <class name="Testcases.TestAuthentication"/>
+            <class name="Testcases.TestPostRequests">
+
+            </class>
+        </classes>
+    </test>
+</suite>
