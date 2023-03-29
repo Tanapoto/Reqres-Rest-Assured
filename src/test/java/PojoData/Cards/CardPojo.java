@@ -1,9 +1,10 @@
-package PojoData;
+package PojoData.Cards;
 
 import lombok.Data;
 
 @Data
-public class CreateACardPojo {
+public class CardPojo {
+    private String id;
     private String name;
     private badges badges;
     private String desc;
@@ -13,7 +14,6 @@ public class CreateACardPojo {
     private boolean dueComplete;
     private String urlSource;
     private String fileSource;
-    private String mimeType;
 
     @Data
     public class badges{
@@ -21,10 +21,9 @@ public class CreateACardPojo {
         private int attachments;
     }
 
-    public CreateACardPojo(String name, String desc, String start, String mimeType) {
+    public CardPojo(String name, String desc, String start) {
         this.name = name;
         this.desc = desc;
         this.start = start;
-        this.mimeType = mimeType;
     }
 }

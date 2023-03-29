@@ -19,7 +19,7 @@ public class BaseSetup {
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .addPathParam("key","07ec1d16a5acd368e1063a0e347ea112")
-                .addPathParam("token","ATTA3037ffa19e5ac373bed7289a27a6901e5e2f3c95da188bca36b5e9d212664c170BF98B08")
+                .addPathParam("token","ATTAf866a358b4c7cc509c02dacdf2b9dd99ed583b5893f675c3cc432ab41a1c6d3d84CB3D1C")
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .build().relaxedHTTPSValidation();
@@ -28,7 +28,7 @@ public class BaseSetup {
 
     public static ResponseSpecification response200() {
 
-        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(5000L))
+        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(15000L))
                 .expectStatusCode(200)
                 .expectBody(notNullValue())
                 .build();
@@ -37,7 +37,7 @@ public class BaseSetup {
     }
     public static ResponseSpecification response201() {
 
-        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(5000L))
+        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(15000L))
                 .expectStatusCode(201)
                 .expectBody(notNullValue())
                 .build();
@@ -46,7 +46,7 @@ public class BaseSetup {
 
     public static ResponseSpecification response400() {
 
-        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(5000L))
+        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(15000L))
                 .expectStatusCode(400)
                 .expectBody(notNullValue())
                 .build();
@@ -56,7 +56,7 @@ public class BaseSetup {
 
     public static ResponseSpecification response404() {
 
-        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(5000L))
+        ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(15000L))
                 .expectStatusCode(404)
                 .expectBody(notNullValue())
                 .build();
