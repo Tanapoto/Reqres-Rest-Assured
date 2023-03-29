@@ -18,12 +18,14 @@ public class BaseSetup {
                 .setBaseUri(Constants.URI)
                 .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
+                .addPathParam("key","07ec1d16a5acd368e1063a0e347ea112")
+                .addPathParam("token","ATTA3037ffa19e5ac373bed7289a27a6901e5e2f3c95da188bca36b5e9d212664c170BF98B08")
                 .addFilter(new RequestLoggingFilter())
                 .addFilter(new ResponseLoggingFilter())
                 .build().relaxedHTTPSValidation();
-
         return request;
     }
+
     public static ResponseSpecification response200() {
 
         ResponseSpecification response = new ResponseSpecBuilder().expectResponseTime(lessThan(5000L))

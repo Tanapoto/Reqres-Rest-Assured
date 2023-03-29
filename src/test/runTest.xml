@@ -8,8 +8,8 @@
     <test name="API_Rest Assured">
         <parameter name="browserType" value="chrome"/>
         <classes>
-            <class name="Testcases.TestAuthentication"/>
-            <class name="Testcases.TestPostRequests">
+<!--            <class name="Testcases.TestGetListBoards">-->
+            <class name="Testcases.TestGetListColumn">
 
             </class>
         </classes>
