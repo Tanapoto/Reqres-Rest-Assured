@@ -1,5 +1,6 @@
 package Testcases.Attachments;
 
+import PojoData.Attachments.AttachmentsPojo;
 import PojoData.Cards.CardPojo;
 import com.google.gson.Gson;
 import constants.Constants;
@@ -30,22 +31,20 @@ public class TestCreateAttachment {
     @Test(priority = 0, dataProvider = "getAttachmentData")
     public void testCreateAttachment(final Hashtable<String, String> data) {
 
-        CardPojo createACardPojo = new CardPojo(data.get("name"),data.get("desc"),data.get("start"));
-
         String response = given().spec(request())
-                .body(createACardPojo)
+                .pathParam("name", data.get("name"))
+                .multiPart("file",Helpers.getCurrentDir() + "src/test/resources/config/ImageTest.jpeg")
                 .when()
-                .pathParam("backLogId", "6424506e3551de3aa15560d7")
-                .post("/cards?idList={backLogId}&key={key}&token={token}")
+                .pathParam("cardId", "642567cbdf7cb0b7f05ce367")
+                .post("/cards/{cardId}/attachments&key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200()).extract().asString();
 
         Gson gson = new Gson();
-        CardPojo cardPojo = gson.fromJson(response,CardPojo.class);
+        AttachmentsPojo cardPojo = gson.fromJson(response,AttachmentsPojo.class);
         Assert.assertEquals(cardPojo.getName(),data.get("name"));
-        Assert.assertEquals(cardPojo.getDesc(),data.get("desc"));
-        Assert.assertTrue(cardPojo.getStart().contains(data.get("start")));
+        Assert.assertEquals(cardPojo.getFileName(),data.get("fileName"));
 
 
         if (ExtentTestManager.getExtentTest() != null) {
