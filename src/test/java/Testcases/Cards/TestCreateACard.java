@@ -1,7 +1,6 @@
 package Testcases.Cards;
 
 import PojoData.Cards.CardPojo;
-import Testcases.ListColumns.TestCreateAListColumn;
 import Testcases.ListColumns.TestGetListColumn;
 import com.google.gson.Gson;
 import common.BaseSetup;
@@ -22,10 +21,10 @@ public class TestCreateACard extends BaseSetup {
 
     public static String cardId;
 
-    @DataProvider (name = "getDataCard")
-    public Object[][] provideACard () {
+    @DataProvider(name = "getDataCard")
+    public Object[][] provideACard() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
-        final Object[][] cardData  = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
+        final Object[][] cardData = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
                 + Constants.EXCEL_DATA_FILE_PATH, "Card", 1, 1);
         return cardData;
     }
@@ -33,7 +32,7 @@ public class TestCreateACard extends BaseSetup {
     @Test(priority = 0, dataProvider = "getDataCard")
     public void testCreateACard(final Hashtable<String, String> data) {
 
-        CardPojo createACardPojo = new CardPojo(data.get("name"),data.get("desc"),data.get("start"));
+        CardPojo createACardPojo = new CardPojo(data.get("name"), data.get("desc"), data.get("start"));
 
         String response = given().spec(request())
                 .body(createACardPojo)
@@ -45,9 +44,9 @@ public class TestCreateACard extends BaseSetup {
                 .spec(response200()).extract().asString();
 
         Gson gson = new Gson();
-        CardPojo cardPojo = gson.fromJson(response,CardPojo.class);
-        Assert.assertEquals(cardPojo.getName(),data.get("name"));
-        Assert.assertEquals(cardPojo.getDesc(),data.get("desc"));
+        CardPojo cardPojo = gson.fromJson(response, CardPojo.class);
+        Assert.assertEquals(cardPojo.getName(), data.get("name"));
+        Assert.assertEquals(cardPojo.getDesc(), data.get("desc"));
         Assert.assertTrue(cardPojo.getStart().contains(data.get("start")));
 
         cardId = cardPojo.getId();
@@ -71,10 +70,10 @@ public class TestCreateACard extends BaseSetup {
                 .extract().asString();
 
         Gson gson = new Gson();
-        CardPojo cardPojo = gson.fromJson(response,CardPojo.class);
+        CardPojo cardPojo = gson.fromJson(response, CardPojo.class);
 
-        Assert.assertEquals(cardPojo.getName(),data.get("name"));
-        Assert.assertEquals(cardPojo.getDesc(),data.get("desc"));
+        Assert.assertEquals(cardPojo.getName(), data.get("name"));
+        Assert.assertEquals(cardPojo.getDesc(), data.get("desc"));
         Assert.assertTrue(cardPojo.getStart().contains(data.get("start")));
 
         if (ExtentTestManager.getExtentTest() != null) {

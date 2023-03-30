@@ -20,10 +20,10 @@ public class TestUpdateACard extends BaseSetup {
 
     public static String cardId;
 
-    @DataProvider (name = "getDataCard")
-    public Object[][] provideACard () {
+    @DataProvider(name = "getDataCard")
+    public Object[][] provideACard() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
-        final Object[][] cardData  = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
+        final Object[][] cardData = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
                 + Constants.EXCEL_DATA_FILE_PATH, "Card", 2, 2);
         return cardData;
     }
@@ -31,7 +31,7 @@ public class TestUpdateACard extends BaseSetup {
     @Test(dataProvider = "getDataCard")
     public void testUpdateACard(final Hashtable<String, String> data) {
 
-        CardPojo updateACardPojo = new CardPojo(data.get("name"),data.get("desc"),data.get("start"));
+        CardPojo updateACardPojo = new CardPojo(data.get("name"), data.get("desc"), data.get("start"));
 
         String response = given().spec(request())
                 .body(updateACardPojo)
@@ -43,9 +43,9 @@ public class TestUpdateACard extends BaseSetup {
                 .spec(response200()).extract().asString();
 
         Gson gson = new Gson();
-        CardPojo cardPojo = gson.fromJson(response,CardPojo.class);
-        Assert.assertEquals(cardPojo.getName(),data.get("name"));
-        Assert.assertEquals(cardPojo.getDesc(),data.get("desc"));
+        CardPojo cardPojo = gson.fromJson(response, CardPojo.class);
+        Assert.assertEquals(cardPojo.getName(), data.get("name"));
+        Assert.assertEquals(cardPojo.getDesc(), data.get("desc"));
         Assert.assertTrue(cardPojo.getStart().contains(data.get("start")));
 
         if (ExtentTestManager.getExtentTest() != null) {

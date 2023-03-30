@@ -30,10 +30,10 @@ public class TestGetListColumn extends BaseSetup {
         int numberOfObjects = jsonArray.length();
 
         Gson gson = new Gson();
-        ColumnBoardPojo[] getColumnPojo = gson.fromJson(response,ColumnBoardPojo[].class);
+        ColumnBoardPojo[] getColumnPojo = gson.fromJson(response, ColumnBoardPojo[].class);
 
-        for(int i = 0; i < numberOfObjects; i++){
-            if(getColumnPojo[i].getName().equals("To Do")){
+        for (int i = 0; i < numberOfObjects; i++) {
+            if (getColumnPojo[i].getName().equals("To Do")) {
                 listColumnId = getColumnPojo[i].getId();
             }
         }

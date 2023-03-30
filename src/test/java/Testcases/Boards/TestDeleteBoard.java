@@ -1,18 +1,9 @@
 package Testcases.Boards;
 
-import PojoData.Boards.BoardsPojo;
-import com.google.gson.Gson;
 import common.BaseSetup;
-import constants.Constants;
-import helpers.ExcelHelpers;
-import helpers.Helpers;
-import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import reports.ExtentReportManager;
 import reports.ExtentTestManager;
-
-import java.util.Hashtable;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
@@ -30,16 +21,13 @@ public class TestDeleteBoard extends BaseSetup {
                 .then()
                 .assertThat()
                 .spec(response200())
-                .body("_value",equalTo(null))
+                .body("_value", equalTo(null))
                 .extract().asString();
 
         if (ExtentTestManager.getExtentTest() != null) {
             ExtentReportManager.info("Test Delete Board Successfully");
         }
     }
-
-
-
 
 
 }
