@@ -23,7 +23,7 @@ public class TestDeleteBoard extends BaseSetup {
     public void testDeleteBoard() {
 
         System.out.println("KK: " + TestCreateBoard.boardId);
-        String response = given().spec(request())
+        given().spec(request())
                 .pathParam("boardId", TestCreateBoard.boardId)
                 .when()
                 .delete("/boards/{boardId}?&key={key}&token={token}")
@@ -34,7 +34,7 @@ public class TestDeleteBoard extends BaseSetup {
                 .extract().asString();
 
         if (ExtentTestManager.getExtentTest() != null) {
-            ExtentReportManager.info("Test Get Created Boards Detail Successfully");
+            ExtentReportManager.info("Test Delete Board Successfully");
         }
     }
 

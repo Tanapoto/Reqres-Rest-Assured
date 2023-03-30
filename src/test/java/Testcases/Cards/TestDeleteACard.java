@@ -13,18 +13,18 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class TestDeleteACard extends BaseSetup {
 
     @Test
-    public void testUpdateACard() {
+    public void testDeleteACard() {
 
        given().spec(request())
                 .when()
                 .pathParam("cardId", TestCreateACard.cardId)
-                .put("/cards/{cardId}?key={key}&token={token}")
+                .delete("/cards/{cardId}?key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200());
 
         if (ExtentTestManager.getExtentTest() != null) {
-            ExtentReportManager.pass("Test Update A Card Successfully");
+            ExtentReportManager.pass("Test Delete A Card Successfully");
         }
     }
 }

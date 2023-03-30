@@ -23,9 +23,9 @@ public class TestCreateBoard extends BaseSetup {
     @DataProvider(name ="createBoardData")
     public Object[][] provideABoard () {
         ExcelHelpers excelHelpers = new ExcelHelpers();
-        final Object[][] cardData  = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
+        final Object[][] boardData  = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
                 + Constants.EXCEL_DATA_FILE_PATH, "Board", 1, 1);
-        return cardData;
+        return boardData;
     }
 
 
@@ -51,7 +51,7 @@ public class TestCreateBoard extends BaseSetup {
         Assert.assertEquals(createBoardsPojo.getDesc(),data.get("desc"));
 
         if (ExtentTestManager.getExtentTest() != null) {
-            ExtentReportManager.pass("Test Get Created Boards Successfully");
+            ExtentReportManager.pass("Test Created a Board Successfully");
         }
 
     }

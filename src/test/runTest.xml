@@ -8,14 +8,18 @@
     <test name="API_Rest Assured">
         <parameter name="browserType" value="chrome"/>
         <classes>
-            <class name="Testcases.Boards.TestGetListBoards"/>
             <class name="Testcases.Boards.TestCreateBoard"/>
+            <class name="Testcases.Boards.TestGetListBoards"/>
             <class name="Testcases.Boards.TestUpdateBoard"/>
 <!--            <class name="Testcases.Boards.TestDeleteBoard"/>-->
-            <class name="Testcases.Boards.TestGetListColumn"/>
+            <class name="Testcases.ListColumns.TestCreateAListColumn"/>
+            <class name="Testcases.ListColumns.TestGetListColumn"/>
             <class name="Testcases.Cards.TestCreateACard"/>
             <class name="Testcases.Cards.TestUpdateACard"/>
-            <class name="Testcases.Cards.TestDeleteACard">
+<!--            <class name="Testcases.Cards.TestDeleteACard"/>-->
+            <class name="Testcases.Attachments.TestCreateAttachment"/>
+            <class name="Testcases.Attachments.TestGetAttachments">
+
 
 
 

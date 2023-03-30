@@ -1,7 +1,8 @@
 package Testcases.Cards;
 
-import PojoData.Boards.BoardsPojo;
 import PojoData.Cards.CardPojo;
+import Testcases.ListColumns.TestCreateAListColumn;
+import Testcases.ListColumns.TestGetListColumn;
 import com.google.gson.Gson;
 import common.BaseSetup;
 import constants.Constants;
@@ -37,8 +38,8 @@ public class TestCreateACard extends BaseSetup {
         String response = given().spec(request())
                 .body(createACardPojo)
                 .when()
-                .pathParam("backLogId", "6424506e3551de3aa15560d7")
-                .post("/cards?idList={backLogId}&key={key}&token={token}")
+                .pathParam("listColumnId", TestGetListColumn.listColumnId)
+                .post("/cards?idList={listColumnId}&key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200()).extract().asString();
@@ -59,7 +60,6 @@ public class TestCreateACard extends BaseSetup {
     @Test(priority = 1, dataProvider = "getDataCard")
     public void testGetACard(Hashtable<String, String> data) {
 
-        System.out.println("CardId: " + cardId);
 
         String response = given().spec(request())
                 .pathParam("cardId", cardId)

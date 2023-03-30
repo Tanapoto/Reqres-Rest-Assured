@@ -36,7 +36,7 @@ public class TestUpdateACard extends BaseSetup {
         String response = given().spec(request())
                 .body(updateACardPojo)
                 .when()
-                .pathParam("cardId", "64245bf7e113b7d1c04e7b99")
+                .pathParam("cardId", TestCreateACard.cardId)
                 .put("/cards/{cardId}?key={key}&token={token}")
                 .then()
                 .assertThat()

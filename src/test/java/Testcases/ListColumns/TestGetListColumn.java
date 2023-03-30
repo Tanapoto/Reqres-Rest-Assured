@@ -1,6 +1,7 @@
-package Testcases.Boards;
+package Testcases.ListColumns;
 
 import PojoData.Boards.ColumnBoardPojo;
+import Testcases.Boards.TestGetListBoards;
 import com.google.gson.Gson;
 import common.BaseSetup;
 import org.json.JSONArray;
@@ -12,12 +13,12 @@ import static io.restassured.RestAssured.given;
 
 public class TestGetListColumn extends BaseSetup {
 
-    public static String backlogId;
+    public static String listColumnId;
 
     @Test()
-    public void testListColumn() {
+    public void testGetListColumn() {
         final String response = given().spec(request())
-                .pathParam("boardId",TestGetListBoards.boardId)
+                .pathParam("boardId", TestGetListBoards.boardId)
                 .when()
                 .get("boards/{boardId}/lists?key={key}&token={token}")
                 .then()
@@ -33,10 +34,9 @@ public class TestGetListColumn extends BaseSetup {
 
         for(int i = 0; i < numberOfObjects; i++){
             if(getColumnPojo[i].getName().equals("To Do")){
-                backlogId = getColumnPojo[i].getId();
+                listColumnId = getColumnPojo[i].getId();
             }
         }
-        System.out.println("BacklogId: " + backlogId);
 
         if (ExtentTestManager.getExtentTest() != null) {
             ExtentReportManager.pass("Test Get List Column In Boards Successfully");
