@@ -2,6 +2,7 @@ package Testcases.Attachments;
 
 import PojoData.Attachments.AttachmentsPojo;
 import PojoData.Cards.CardPojo;
+import Testcases.Cards.TestCreateACard;
 import com.google.gson.Gson;
 import constants.Constants;
 import helpers.ExcelHelpers;
@@ -29,13 +30,14 @@ public class TestCreateAttachment {
     }
 
     @Test(priority = 0, dataProvider = "getAttachmentData")
-    public void testCreateAttachment(final Hashtable<String, String> data) {
+    public void testCreateAttachmentWithFile(final Hashtable<String, String> data) {
 
         String response = given().spec(request())
                 .pathParam("name", data.get("name"))
                 .multiPart("file",Helpers.getCurrentDir() + "src/test/resources/config/ImageTest.jpeg")
+                .multiPart("setCover",data.get("setCover"))
                 .when()
-                .pathParam("cardId", "642567cbdf7cb0b7f05ce367")
+                .pathParam("cardId", TestCreateACard.cardId)
                 .post("/cards/{cardId}/attachments&key={key}&token={token}")
                 .then()
                 .assertThat()
@@ -45,6 +47,30 @@ public class TestCreateAttachment {
         AttachmentsPojo cardPojo = gson.fromJson(response,AttachmentsPojo.class);
         Assert.assertEquals(cardPojo.getName(),data.get("name"));
         Assert.assertEquals(cardPojo.getFileName(),data.get("fileName"));
+
+
+        if (ExtentTestManager.getExtentTest() != null) {
+            ExtentReportManager.info("Test Create A Card Successfully");
+        }
+    }
+
+    @Test(priority = 0, dataProvider = "getAttachmentData")
+    public void testCreateAttachmentWithUrl(final Hashtable<String, String> data) {
+
+        AttachmentsPojo attachmentsPojo = new AttachmentsPojo(data.get("name"),data.get("url"));
+
+        String response = given().spec(request())
+                .body(attachmentsPojo)
+                .when()
+                .pathParam("cardId", TestCreateACard.cardId)
+                .post("/cards/{cardId}/attachments&key={key}&token={token}")
+                .then()
+                .assertThat()
+                .spec(response200()).extract().asString();
+
+        Gson gson = new Gson();
+        AttachmentsPojo cardPojo = gson.fromJson(response,AttachmentsPojo.class);
+        Assert.assertEquals(cardPojo.getName(),data.get("name"));
 
 
         if (ExtentTestManager.getExtentTest() != null) {
