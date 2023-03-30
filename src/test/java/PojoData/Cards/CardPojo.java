@@ -15,6 +15,7 @@ public class CardPojo {
     private String urlSource;
     private String fileSource;
 
+    private String limits;
     @Data
     public class badges{
         private int comments;
@@ -26,4 +27,7 @@ public class CardPojo {
         this.desc = desc;
         this.start = start;
     }
+
+
+
 }

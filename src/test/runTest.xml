@@ -14,7 +14,9 @@
 <!--            <class name="Testcases.Boards.TestDeleteBoard"/>-->
             <class name="Testcases.Boards.TestGetListColumn"/>
             <class name="Testcases.Cards.TestCreateACard"/>
-            <class name="Testcases.Cards.TestUpdateACard">
+            <class name="Testcases.Cards.TestUpdateACard"/>
+            <class name="Testcases.Cards.TestDeleteACard">
+
 
 
             </class>
