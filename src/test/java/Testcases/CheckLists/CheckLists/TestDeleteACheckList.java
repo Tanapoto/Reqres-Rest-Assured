@@ -4,16 +4,16 @@ import common.BaseSetup;
 import org.testng.annotations.Test;
 import reports.ExtentReportManager;
 import reports.ExtentTestManager;
-import java.util.Hashtable;
+
 import static io.restassured.RestAssured.given;
 
-public class DeleteACheckList extends BaseSetup {
+public class TestDeleteACheckList extends BaseSetup {
 
     @Test(priority = 0)
-    public void testCreateACheckList(final Hashtable<String, String> data) {
+    public void testDeleteACheckList() {
 
         given().spec(request())
-                .pathParams("checkListId", CreateACheckList.checkListId)
+                .pathParams("checkListId", TestCreateACheckList.checkListId)
                 .when()
                 .delete("checklists/{checkListId}?key={key}&token={token}")
                 .then()
@@ -21,7 +21,7 @@ public class DeleteACheckList extends BaseSetup {
                 .spec(response200());
 
         if (ExtentTestManager.getExtentTest() != null) {
-            ExtentReportManager.info("Test Update A CheckList Successfully");
+            ExtentReportManager.info("Test Delete A CheckList Successfully");
         }
     }
 

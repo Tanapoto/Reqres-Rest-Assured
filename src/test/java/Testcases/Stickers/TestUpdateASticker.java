@@ -1,6 +1,7 @@
 package Testcases.Stickers;
 
 import PojoData.Stickers.StickersPojo;
+import Testcases.Cards.TestCreateACard;
 import Testcases.Cards.TestUpdateACard;
 import com.google.gson.Gson;
 import common.BaseSetup;
@@ -32,11 +33,11 @@ public class TestUpdateASticker extends BaseSetup {
 
         StickersPojo stickersRequest = new StickersPojo(data.get("top"),data.get("left"),data.get("zIndex"),data.get("rotate"),data.get("image"));
         String response = given().spec(request())
-                .pathParams("cardId", TestUpdateACard.cardId)
+                .pathParams("cardId", TestCreateACard.cardId)
                 .pathParams("stickerId", TestCreateASticker.stickerId)
                 .body(stickersRequest)
                 .when()
-                .put("cards/{{cardId}}/stickers/{stickerId}?key={key}&token={token}")
+                .put("cards/{cardId}/stickers/{stickerId}?key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200()).extract().asString();

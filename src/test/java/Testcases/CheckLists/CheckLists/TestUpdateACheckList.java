@@ -1,6 +1,6 @@
-package Testcases.CheckLists.CheckItems;
+package Testcases.CheckLists.CheckLists;
 
-import PojoData.CheckLists.CheckItemPojo;
+import PojoData.CheckLists.CheckListPojo;
 import com.google.gson.Gson;
 import common.BaseSetup;
 import constants.Constants;
@@ -16,38 +16,37 @@ import java.util.Hashtable;
 
 import static io.restassured.RestAssured.given;
 
-public class UpdateACheckItem extends BaseSetup {
+public class TestUpdateACheckList extends BaseSetup {
 
-
-    @DataProvider(name = "getACheckItemData")
+    @DataProvider(name = "getCheckListData")
     public Object[][] provideAChecklist() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
         final Object[][] CheckListData = excelHelpers.getDataHashTable(Helpers.getCurrentDir()
-                + Constants.EXCEL_DATA_FILE_PATH, "CheckItem", 2, 2);
+                + Constants.EXCEL_DATA_FILE_PATH, "CheckList", 2, 2);
         return CheckListData;
     }
 
+
     @Test(priority = 0, dataProvider = "getCheckListData")
-    public void testCreateACheckList(final Hashtable<String, String> data) {
+    public void testUpdateACheckList(final Hashtable<String, String> data) {
 
         String response = given().spec(request())
-                .pathParams("cardId","cardId")
-                .pathParams("checkListId","checkListId")
-                .pathParams("checkItemId","checkItemId")
-                .pathParams("name", data.get("name"))
+                .pathParams("checkListId", TestCreateACheckList.checkListId)
+                .pathParams("name",data.get("name"))
                 .when()
-                .put("cards/{{cardId}}/checklist/{{checkListId}}/checkItem/{{checkItemId}}?key={{key}}&token={{token}}&name={name}")
+                .put("checklists/{checkListId}?key={key}&token={token}&name={name}")
                 .then()
                 .assertThat()
                 .spec(response200()).extract().asString();
 
         Gson gson = new Gson();
-        CheckItemPojo checkListPojo = gson.fromJson(response, CheckItemPojo.class);
-        Assert.assertEquals(checkListPojo.getName(), data.get("name"));
+        CheckListPojo CheckListPojo = gson.fromJson(response, CheckListPojo.class);
+        Assert.assertEquals(CheckListPojo.getName(), data.get("name"));
 
         if (ExtentTestManager.getExtentTest() != null) {
-            ExtentReportManager.info("Test Update A CheckItem Successfully");
+            ExtentReportManager.info("Test Update A CheckList Successfully");
         }
     }
+
 
 }

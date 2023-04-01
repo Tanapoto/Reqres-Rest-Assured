@@ -39,7 +39,7 @@ public class TestCreateASticker extends BaseSetup {
                 .pathParams("cardId", TestCreateACard.cardId)
                 .body(stickersRequest)
                 .when()
-                .post("cards/{{cardId}}/stickers?key={key}&token={token}")
+                .post("cards/{cardId}/stickers?key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200()).extract().asString();
@@ -67,7 +67,7 @@ public class TestCreateASticker extends BaseSetup {
                 .pathParams("cardId", TestCreateACard.cardId)
                 .pathParams("stickerId",stickerId)
                 .when()
-                .get("cards/{{cardId}}/stickers/{{stickerId}}?key={{key}}&token={{token}}")
+                .get("cards/{cardId}/stickers/{stickerId}?key={key}&token={token}")
                 .then()
                 .assertThat()
                 .spec(response200())
@@ -75,7 +75,6 @@ public class TestCreateASticker extends BaseSetup {
 
         Gson gson = new Gson();
         StickersPojo stickersPojo = gson.fromJson(response, StickersPojo.class);
-        stickerId = stickersPojo.getId();
 
         Assert.assertEquals(stickersPojo.getTop(), data.get("top"));
         Assert.assertEquals(stickersPojo.getLeft(), data.get("left"));

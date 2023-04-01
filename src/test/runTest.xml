@@ -18,12 +18,22 @@
             <class name="Testcases.Cards.TestUpdateACard"/>
 <!--            <class name="Testcases.Cards.TestDeleteACard"/>-->
             <class name="Testcases.Attachments.TestCreateAttachment"/>
-            <class name="Testcases.Attachments.TestGetAttachments">
+            <class name="Testcases.Attachments.TestGetAttachments"/>
+            <class name="Testcases.Stickers.TestCreateASticker"/>
+            <class name="Testcases.Stickers.TestUpdateASticker"/>
+<!--            <class name="Testcases.Stickers.TestDeleteASticker"/>-->
+            <class name="Testcases.CheckLists.CheckLists.TestCreateACheckList"/>
+            <class name="Testcases.CheckLists.CheckLists.TestUpdateACheckList"/>
+<!--            <class name="Testcases.CheckLists.CheckLists.TestDeleteACheckList"/>-->
+            <class name="Testcases.CheckLists.CheckItems.TestCreateACheckItem"/>
+            <class name="Testcases.CheckLists.CheckItems.TestUpdateACheckItem"/>
+            <class name="Testcases.CheckLists.CheckItems.TestDeleteACheckItem">
 
 
 
 
-            </class>
+
+        </class>
         </classes>
     </test>
 </suite>

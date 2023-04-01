@@ -18,8 +18,6 @@ import static io.restassured.RestAssured.given;
 
 public class TestUpdateACard extends BaseSetup {
 
-    public static String cardId;
-
     @DataProvider(name = "getDataCard")
     public Object[][] provideACard() {
         ExcelHelpers excelHelpers = new ExcelHelpers();
